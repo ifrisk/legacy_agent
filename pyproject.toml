@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "legacy-code-agent"
+version = "0.1.0"
+description = "Automated legacy-code unit test and documentation generation agent."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "OpenAI Codex" }
+]
+
+[project.scripts]
+legacy-agent = "legacy_agent.cli:main"
+
+[tool.setuptools]
+packages = ["legacy_agent", "legacy_agent.analyzers", "legacy_agent.generators"]
