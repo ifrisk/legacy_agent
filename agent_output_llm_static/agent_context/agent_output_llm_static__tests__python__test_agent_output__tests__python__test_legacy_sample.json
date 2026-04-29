@@ -1,0 +1,64 @@
+{
+  "file_path": "C:\\Users\\Administrator\\Desktop\\legacy_agent\\examples\\agent_output_llm_static\\tests\\python\\test_agent_output__tests__python__test_legacy_sample.py",
+  "language": "python",
+  "functions": [
+    {
+      "name": "_load_target_module",
+      "qualname": "_load_target_module",
+      "params": [
+        {
+          "name": "file_path",
+          "annotation": "Path",
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [
+        {
+          "expression": "spec is None or spec.loader is None",
+          "variables": [
+            "spec"
+          ],
+          "constants": []
+        }
+      ],
+      "raised_exceptions": [
+        "RuntimeError"
+      ],
+      "source": "def _load_target_module(file_path: Path):\n    spec = importlib.util.spec_from_file_location(\"legacy_target_module\", file_path)\n    if spec is None or spec.loader is None:\n        raise RuntimeError(f\"Unable to import {file_path}\")\n    module = importlib.util.module_from_spec(spec)\n    spec.loader.exec_module(module)\n    return module"
+    },
+    {
+      "name": "setUpClass",
+      "qualname": "Test_Load_Target_Module.setUpClass",
+      "params": [
+        {
+          "name": "cls",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def setUpClass(cls):\n        cls.module = _load_target_module(TARGET_FILE)"
+    },
+    {
+      "name": "test__load_target_module_default",
+      "qualname": "Test_Load_Target_Module.test__load_target_module_default",
+      "params": [
+        {
+          "name": "self",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def test__load_target_module_default(self):\n        with self.assertRaises(RuntimeError):\n            self.module._load_target_module(**{'file_path': None})"
+    }
+  ]
+}

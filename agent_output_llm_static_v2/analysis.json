@@ -1,0 +1,103 @@
+[
+  {
+    "path": "C:\\Users\\Administrator\\Desktop\\legacy_agent\\examples\\legacy_sample.py",
+    "language": "python",
+    "functions": [
+      {
+        "name": "normalize_score",
+        "qualname": "normalize_score",
+        "language": "python",
+        "file_path": "C:\\Users\\Administrator\\Desktop\\legacy_agent\\examples\\legacy_sample.py",
+        "lineno": 1,
+        "end_lineno": 6,
+        "docstring": null,
+        "params": [
+          {
+            "name": "score",
+            "annotation": "int",
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return_annotation": "int",
+        "branch_conditions": [
+          {
+            "expression": "score < 0",
+            "variables": [
+              "score"
+            ],
+            "constants": [
+              0
+            ]
+          },
+          {
+            "expression": "score > 100",
+            "variables": [
+              "score"
+            ],
+            "constants": [
+              100
+            ]
+          }
+        ],
+        "raised_exceptions": [],
+        "source": "def normalize_score(score: int) -> int:\n    if score < 0:\n        return 0\n    if score > 100:\n        return 100\n    return score",
+        "is_method": false,
+        "receiver": null
+      },
+      {
+        "name": "classify_age",
+        "qualname": "classify_age",
+        "language": "python",
+        "file_path": "C:\\Users\\Administrator\\Desktop\\legacy_agent\\examples\\legacy_sample.py",
+        "lineno": 9,
+        "end_lineno": 16,
+        "docstring": null,
+        "params": [
+          {
+            "name": "age",
+            "annotation": "int",
+            "default": null,
+            "kind": "positional_or_keyword"
+          }
+        ],
+        "return_annotation": "str",
+        "branch_conditions": [
+          {
+            "expression": "age < 0",
+            "variables": [
+              "age"
+            ],
+            "constants": [
+              0
+            ]
+          },
+          {
+            "expression": "age < 18",
+            "variables": [
+              "age"
+            ],
+            "constants": [
+              18
+            ]
+          },
+          {
+            "expression": "age >= 65",
+            "variables": [
+              "age"
+            ],
+            "constants": [
+              65
+            ]
+          }
+        ],
+        "raised_exceptions": [
+          "ValueError"
+        ],
+        "source": "def classify_age(age: int) -> str:\n    if age < 0:\n        raise ValueError(\"age must be non-negative\")\n    if age < 18:\n        return \"minor\"\n    if age >= 65:\n        return \"senior\"\n    return \"adult\"",
+        "is_method": false,
+        "receiver": null
+      }
+    ]
+  }
+]

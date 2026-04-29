@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 
+from legacy_agent.llm import LLMConfig
 from legacy_agent.orchestrator import analyze_project, execute_workflow
 
 
@@ -27,6 +28,22 @@ def build_parser() -> argparse.ArgumentParser:
         default=2,
         help="Maximum number of repair attempts after a failed generated-test run.",
     )
+    run_parser.add_argument(
+        "--llm-provider",
+        default="none",
+        choices=["none", "openai"],
+        help="LLM provider used for code understanding, test generation, and repair.",
+    )
+    run_parser.add_argument(
+        "--llm-model",
+        default="gpt-5",
+        help="Model name for the configured LLM provider.",
+    )
+    run_parser.add_argument(
+        "--llm-api-key-env",
+        default="OPENAI_API_KEY",
+        help="Environment variable name that stores the LLM API key.",
+    )
     return parser
 
 
@@ -47,7 +64,12 @@ def main() -> int:
         return 0
 
     if args.command == "run":
-        result = execute_workflow(root, out, max_repair_attempts=args.max_repair_attempts)
+        llm_config = LLMConfig(
+            provider=args.llm_provider,
+            model=args.llm_model,
+            api_key_env=args.llm_api_key_env,
+        )
+        result = execute_workflow(root, out, max_repair_attempts=args.max_repair_attempts, llm_config=llm_config)
         print(json.dumps(result.to_dict(), ensure_ascii=False, indent=2))
         return 0
 

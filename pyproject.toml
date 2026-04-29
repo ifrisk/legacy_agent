@@ -12,6 +12,9 @@ authors = [
   { name = "OpenAI Codex" }
 ]
 
+[project.optional-dependencies]
+openai = ["openai>=1.30.0"]
+
 [project.scripts]
 legacy-agent = "legacy_agent.cli:main"
 

@@ -1,0 +1,192 @@
+{
+  "file_path": "C:\\Users\\Administrator\\Desktop\\legacy_agent\\examples\\agent_output_llm_static\\tests\\python\\test_legacy_sample.py",
+  "language": "python",
+  "functions": [
+    {
+      "name": "_load_target_module",
+      "qualname": "_load_target_module",
+      "params": [
+        {
+          "name": "file_path",
+          "annotation": "Path",
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [
+        {
+          "expression": "spec is None or spec.loader is None",
+          "variables": [
+            "spec"
+          ],
+          "constants": []
+        }
+      ],
+      "raised_exceptions": [
+        "RuntimeError"
+      ],
+      "source": "def _load_target_module(file_path: Path):\n    spec = importlib.util.spec_from_file_location(\"legacy_target_module\", file_path)\n    if spec is None or spec.loader is None:\n        raise RuntimeError(f\"Unable to import {file_path}\")\n    module = importlib.util.module_from_spec(spec)\n    spec.loader.exec_module(module)\n    return module"
+    },
+    {
+      "name": "setUpClass",
+      "qualname": "TestNormalize_Score.setUpClass",
+      "params": [
+        {
+          "name": "cls",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def setUpClass(cls):\n        cls.module = _load_target_module(TARGET_FILE)"
+    },
+    {
+      "name": "test_normalize_score_default",
+      "qualname": "TestNormalize_Score.test_normalize_score_default",
+      "params": [
+        {
+          "name": "self",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def test_normalize_score_default(self):\n        result = self.module.normalize_score(**{'score': 0})\n        self.assertEqual(repr(result), '0')"
+    },
+    {
+      "name": "test_normalize_score_score_0",
+      "qualname": "TestNormalize_Score.test_normalize_score_score_0",
+      "params": [
+        {
+          "name": "self",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def test_normalize_score_score_0(self):\n        result = self.module.normalize_score(**{'score': -1})\n        self.assertEqual(repr(result), '0')"
+    },
+    {
+      "name": "test_normalize_score_score_2",
+      "qualname": "TestNormalize_Score.test_normalize_score_score_2",
+      "params": [
+        {
+          "name": "self",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def test_normalize_score_score_2(self):\n        result = self.module.normalize_score(**{'score': 1})\n        self.assertEqual(repr(result), '1')"
+    },
+    {
+      "name": "test_normalize_score_score_3",
+      "qualname": "TestNormalize_Score.test_normalize_score_score_3",
+      "params": [
+        {
+          "name": "self",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def test_normalize_score_score_3(self):\n        result = self.module.normalize_score(**{'score': 99})\n        self.assertEqual(repr(result), '99')"
+    },
+    {
+      "name": "setUpClass",
+      "qualname": "TestClassify_Age.setUpClass",
+      "params": [
+        {
+          "name": "cls",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def setUpClass(cls):\n        cls.module = _load_target_module(TARGET_FILE)"
+    },
+    {
+      "name": "test_classify_age_default",
+      "qualname": "TestClassify_Age.test_classify_age_default",
+      "params": [
+        {
+          "name": "self",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def test_classify_age_default(self):\n        result = self.module.classify_age(**{'age': 0})\n        self.assertEqual(repr(result), \"'minor'\")"
+    },
+    {
+      "name": "test_classify_age_age_0",
+      "qualname": "TestClassify_Age.test_classify_age_age_0",
+      "params": [
+        {
+          "name": "self",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def test_classify_age_age_0(self):\n        with self.assertRaises(ValueError):\n            self.module.classify_age(**{'age': -1})"
+    },
+    {
+      "name": "test_classify_age_age_2",
+      "qualname": "TestClassify_Age.test_classify_age_age_2",
+      "params": [
+        {
+          "name": "self",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def test_classify_age_age_2(self):\n        result = self.module.classify_age(**{'age': 1})\n        self.assertEqual(repr(result), \"'minor'\")"
+    },
+    {
+      "name": "test_classify_age_age_3",
+      "qualname": "TestClassify_Age.test_classify_age_age_3",
+      "params": [
+        {
+          "name": "self",
+          "annotation": null,
+          "default": null,
+          "kind": "positional_or_keyword"
+        }
+      ],
+      "return_annotation": null,
+      "branch_conditions": [],
+      "raised_exceptions": [],
+      "source": "def test_classify_age_age_3(self):\n        result = self.module.classify_age(**{'age': 17})\n        self.assertEqual(repr(result), \"'minor'\")"
+    }
+  ]
+}

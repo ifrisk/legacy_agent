@@ -63,6 +63,9 @@ class WorkflowResult:
     docs: list[str] = field(default_factory=list)
     test_runs: list[TestExecutionResult] = field(default_factory=list)
     repaired: bool = False
+    agent_traces: list[dict[str, Any]] = field(default_factory=list)
+    llm_provider: str = "none"
+    llm_model: str | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -74,6 +77,9 @@ class WorkflowResult:
             "docs": self.docs,
             "test_runs": [asdict(item) for item in self.test_runs],
             "repaired": self.repaired,
+            "agent_traces": self.agent_traces,
+            "llm_provider": self.llm_provider,
+            "llm_model": self.llm_model,
         }
 
 
